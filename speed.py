@@ -2,6 +2,7 @@ import speedtest
 
 
 def test():
+    print("Start SpeedTest...")
     s = speedtest.Speedtest()
     s.get_servers()
     s.get_best_server()
