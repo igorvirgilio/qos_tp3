@@ -1,0 +1,3 @@
+import pingtest
+import speed
+
