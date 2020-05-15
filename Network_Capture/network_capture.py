@@ -53,7 +53,7 @@ class network_capture(object):
 	#
 	# Constructor
 	def __init__(self, *args):
-
+		
 		self.keywords = []
 		self.capture_cmd = None
 		self.validation_values = {
@@ -73,7 +73,13 @@ class network_capture(object):
 		self.pcap_file = filename + '.pcap'
 
 		# Set args as an array of arrays
+		source = ['capture.py', '-i', 'enp0s3', '-keys', 'error,get,ssl,https']
+
+		print(source)
+		print(args)
 		args = list(args)
+		args[0] = source
+		print(args[0])
 
 		# Make sure the list has usable arguments.
 		if len(args[0]) == 1:
