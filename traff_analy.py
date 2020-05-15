@@ -21,7 +21,7 @@ class Traff_Analy():
 
 
     def capture(self):
-        captura = NFStreamer(source='/home/igor/UMinho/MCT/captura/04-29_hang-spo-you-what.pcapng').to_pandas()
+        captura = NFStreamer(source='/home/igor/UMinho/QoS/TP3/qos_tp3/Pcap_Files/04-29_hang-spo-you-what.pcapng').to_pandas()
         #captura = NFStreamer(source='/home/igor/UMinho/MCT/captura/04-29_hang-spo-you-what.pcapng').to_pandas()
         #captura = NFStreamer(source='/home/igor/UMinho/MCT/mct_tp3/test.pcap').to_pandas()
         self.data = pd.DataFrame(captura) # converte em dataframe
@@ -236,7 +236,8 @@ class Traff_Analy():
         table1 = Label(win, text=pdtabulate(self.df_cat_stat),font=('Consolas', 10), justify=LEFT, anchor='nw').grid(sticky='ewns')    
         #table2 = Label(win, text=self.df_cat_stat['total_bytes']).grid(column=1, row=0)
         win.mainloop()
-
+    
+    
 
 def main():
     traff = Traff_Analy()
