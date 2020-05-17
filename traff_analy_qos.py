@@ -21,7 +21,7 @@ class Traff_Analy():
 
 
     def capture(self):
-        captura = NFStreamer(source='/home/igor/UMinho/QoS/TP3/qos_tp3/Pcap_Files/04-29_hang-spo-you-what.pcapng').to_pandas()
+        captura = NFStreamer(source='/home/igor/UMinho/QoS/TP3/qos_tp3/Pcap_Files/webex-matheus.pcapng').to_pandas()
         #captura = NFStreamer(source='/home/igor/UMinho/MCT/captura/04-29_hang-spo-you-what.pcapng').to_pandas()
         #captura = NFStreamer(source='/home/igor/UMinho/MCT/mct_tp3/test.pcap').to_pandas()
         self.data = pd.DataFrame(captura) # converte em dataframe
@@ -247,10 +247,10 @@ def main():
     traff.statistic()
     traff.print_table()
     #traff.plot_graphs_barh()
-    #traff.plot_graphs2()
+    traff.plot_graphs2()
     
     traff.win_table()
-    #traff.plot_graphs()
+    traff.plot_graphs()
     
 
 if __name__ == '__main__':
