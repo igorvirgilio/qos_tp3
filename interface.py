@@ -54,9 +54,9 @@ def btncapture():
         txtArea.insert(END, 'Error!')
 
 
-def btnping(newwindowping):
+def btnping(newwindowping, server):
     fnping = Ping()
-    fnping.main()
+    fnping.main(server)
     newwindowping.destroy()
     txtArea.delete(1.0, END)
 
@@ -69,13 +69,14 @@ def btnping(newwindowping):
 def windowping():
     newwindowping = Toplevel(root)
     newwindowping.geometry('300x50')
-    btn_window = Button(newwindowping, text='Ping', command= lambda: btnping(newwindowping))
+    btn_window = Button(newwindowping, text='Ping', command= lambda: btnping(newwindowping, server))
     btn_window.grid(column=0, row=0)
     label_ping = Label(newwindowping, text = 'What\'s the server do you want to ping?')
     label_ping.grid(column=1, row=1)
     entry_ping = Entry(newwindowping)
     entry_ping.grid(column=1, row=0)
-    return newwindowping
+    server = entry_ping
+    return newwindowping, server
 
 def newwindowtest():
     nextwindow = Toplevel(root)

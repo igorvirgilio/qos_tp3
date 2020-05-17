@@ -135,10 +135,11 @@ class Ping:
                 host, seq_number, port, timeout,
             ))
 
-    def main(self):
+    def main(self, server):
         #args = self.parse_arguments()
         self.measure_latency(
-            host='www.google.com',
+            host=server.get(),
+            #host='www.google.com',
             port=443,
             timeout=float(5),
             runs=10,
