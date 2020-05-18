@@ -102,13 +102,9 @@ class Gui():
         server = entry_ping
 
     def btnnfstream(self):
+        self.txtArea.delete(1.0, END)
         fnstream = Traff_Analy()
         fnstream.main()
-        #fnstream.capture()
-        #fnstream.filtering()
-        #fnstream.statistic()
-        #fnstream.print_table()
-        
 
 # def newwindowtest():
 #    nextwindow = Toplevel(root)
