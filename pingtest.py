@@ -2,13 +2,13 @@ import argparse
 import socket
 import time
 from timeit import default_timer as timer
-
+import interface
 from typing import Optional
 
 
 class Ping:
-    # def __init__(self):
-    #   self.server = {}
+    def __init__(self):
+        self.info = []
 
     #def parse_arguments(self):
     #    '''Argument parsing for the console_script'''
@@ -58,7 +58,7 @@ class Ping:
 #
     #    return parser.parse_args()
 
-    def measure_latency(self,
+    def measure_latency(self, info,
         host: str,
         port: int = 443,
         timeout: float = 5,
@@ -80,7 +80,7 @@ class Ping:
             if human_output:
                 if i == 0:
                     print('tcp-latency {}'.format(host))
-                Ping._human_output(
+                Ping._human_output(self, 
                     host=host, port=port, timeout=timeout,
                     latency_point=last_latency_point, seq_number=i,
                 )
@@ -123,26 +123,34 @@ class Ping:
 
         return float(s_runtime)
 
-    def _human_output(host: str, port: int, timeout: int, latency_point: float, seq_number: int):
+    def _human_output(self, host: str, port: int, timeout: int, latency_point: float, seq_number: int):
         '''fstring based output for the console_script'''
         # In case latency_point is None
         if latency_point:
+            self.info.append('{}: tcp seq={} port={} timeout={} time={} ms'.format(
+                host, seq_number, port, timeout, latency_point,
+            ))
             print('{}: tcp seq={} port={} timeout={} time={} ms'.format(
                 host, seq_number, port, timeout, latency_point,
             ))
+            return self.info
         else:
+            self.info.append('{}: tcp seq={} port={} timeout={} failed'.format(
+                host, seq_number, port, timeout,
+            ))
             print('{}: tcp seq={} port={} timeout={} failed'.format(
                 host, seq_number, port, timeout,
             ))
+            return self.info
 
-    def main(self, server):
+    def main(self, server, info):
         #args = self.parse_arguments()
-        self.measure_latency(
+        self.measure_latency(self,
             host=server.get(),
             #host='www.google.com',
             port=443,
             timeout=float(5),
-            runs=10,
+            runs=5, # Numbers of pings.
             human_output=True,
             wait=1,
         )
