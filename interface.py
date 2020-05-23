@@ -14,11 +14,11 @@ import traff_analy_qos
 class Gui():
     def __init__(self, root):
         # Interface structure start here.
-        btn_capture = Button(root, text='Capture Packet',
+        btn_capture = Button(root, text='1 - Capture Packet',
                              command=self.btncapture)
-        btn_ping = Button(root, text='Ping Test', command=self.windowping)
-        btn_speed = Button(root, text='SpeedTest', command=self.btnspeed)
-        btn_nfstream = Button(root, text='NFStream', command=self.btnnfstream)
+        btn_ping = Button(root, text='2 - Ping Test', command=self.windowping)
+        btn_speed = Button(root, text='3 - SpeedTest', command=self.btnspeed)
+        btn_nfstream = Button(root, text='4 - NFStream', command=self.btnnfstream)
 
         btn_capture.grid(column=0, row=0)
         btn_ping.grid(column=1, row=0)
