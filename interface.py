@@ -35,9 +35,9 @@ class Gui():
         print("teste")
 
     def on_closing(self):
-        root.destroy()
-        # if messagebox.askokcancel("Quit", "Do you want to quit?"):
-        #    root.destroy()
+        #root.destroy()
+        if messagebox.askokcancel("Quit", "Do you want to quit?"):
+           root.destroy()
 
     def btnspeed(self):
         try:
@@ -75,12 +75,26 @@ class Gui():
             self.txtArea.delete(1.0, END)
             self.txtArea.insert(END, 'Error!')
 
-    def btnping(self, newwindowping, server):
+    def btnping(self, newwindowping, entry_ping):
         try:
             self.txtArea.delete(1.0, END)
             info = []
             fnping = Ping()
-            fnping.main(server, info)
+            fnping.main(entry_ping, info)
+            for i in fnping.info:
+                self.txtArea.insert(END, i + '\n')
+            newwindowping.destroy()
+        except:
+            self.txtArea.delete(1.0, END)
+            self.txtArea.insert(END, 'Error!')
+
+    def btnpingdefault(self, newwindowping, entry_ping):
+        try:
+            self.txtArea.delete(1.0, END)
+            entry_ping.insert(END, 'www.google.com')
+            info = []
+            fnping = Ping()
+            fnping.main(entry_ping, info)
             for i in fnping.info:
                 self.txtArea.insert(END, i + '\n')
             newwindowping.destroy()
@@ -90,16 +104,19 @@ class Gui():
 
     def windowping(self):
         newwindowping = Toplevel(root)
-        newwindowping.geometry('300x50')
-        btn_window = Button(newwindowping, text='Ping',
-                            command=lambda: self.btnping(newwindowping, server))
+        newwindowping.geometry('470x55')
+        btn_window = Button(newwindowping, text='Ping Server',
+                            command=lambda: self.btnping(newwindowping, entry_ping))
         btn_window.grid(column=0, row=0)
+        btn_default = Button(newwindowping, text='Default',
+                            command=lambda: self.btnpingdefault(newwindowping, entry_ping))
+        btn_default.grid(column=3, row=0)
         label_ping = Label(
-            newwindowping, text='What\'s the server do you want to ping?')
+            newwindowping, text='Select the server or select default ping button.')
         label_ping.grid(column=1, row=1)
         entry_ping = Entry(newwindowping)
         entry_ping.grid(column=1, row=0)
-        server = entry_ping
+        #server = entry_ping
 
     def btnnfstream(self):
         self.txtArea.delete(1.0, END)
