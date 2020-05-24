@@ -1,3 +1,6 @@
 /.vscode
 /env
 /__pycache__
+/Network_Capture
+/Network_Latency
+/Network_SpeedTest
