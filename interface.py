@@ -52,9 +52,7 @@ class Gui():
             self.txtArea.insert(END, 'Local: {} \n'.format(s["name"]))
             self.txtArea.insert(END, 'Country: {} \n'.format(s["country"]))
             self.txtArea.insert(END, 'Sponsor: {} \n'.format(s["sponsor"]))
-            self.txtArea.insert(END, 'Host: {} \n'.format(s["host"]))
-            self.txtArea.insert(
-                END, 'Download: {} Mbps\n\n'.format(str(d)[:2]))
+            self.txtArea.insert(END, 'Host: {} \n\n'.format(s["host"]))
             self.txtArea.insert(END, 'Client Information: \n')
             self.txtArea.insert(END, 'IP: {} \n'.format(c["ip"]))
             self.txtArea.insert(END, 'ISP: {} \n'.format(c["isp"]))
