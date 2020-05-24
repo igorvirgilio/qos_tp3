@@ -1,2 +1,0 @@
-# 216.58.201.132 = www.google.com
-python3 ping.py -r 10 -w 1 216.58.201.132

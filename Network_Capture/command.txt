@@ -1,1 +1,0 @@
-$ python3 network_capture.py -i <INTERFACE> -keys error,get,ssl,https,http
