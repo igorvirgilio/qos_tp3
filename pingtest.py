@@ -9,6 +9,7 @@ from typing import Optional
 class Ping:
     def __init__(self):
         self.info = []
+        self.list_of_latency_points = []
 
     #def parse_arguments(self):
     #    '''Argument parsing for the console_script'''
@@ -70,8 +71,8 @@ class Ping:
         :rtype: list
         Builds a list composed of latency_points
         '''
-        list_of_latency_points = []
-
+        #list_of_latency_points = []
+        
         for i in range(runs):
             time.sleep(wait)
             last_latency_point = self.latency_point(
@@ -88,10 +89,18 @@ class Ping:
                     print('--- {} tcp-latency statistics ---'.format(host))
                     print('{} packets transmitted'.format(i+1))
 
-            list_of_latency_points.append(last_latency_point)
+            self.list_of_latency_points.append(last_latency_point)
+        #print(self.list_of_latency_points)
+        """
+        i = 1
+        for x in list_of_latency_points:
+            jitter_list = []
+            jitter_list[(i-1)] = list_of_latency_points[(i-1)] - list_of_latency_points[(i)]
 
-        return list_of_latency_points
-
+        print(jitter_list)
+        """
+        return self.list_of_latency_points
+        
     def latency_point(self, host: str, port: int = 443, timeout: float = 5) -> Optional[float]:
         '''
         :rtype: Returns float if possible

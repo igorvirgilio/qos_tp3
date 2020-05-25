@@ -77,15 +77,29 @@ class Gui():
         try:
             self.txtArea.delete(1.0, END)
             info = []
+            jit = []
             fnping = Ping()
             fnping.main(entry_ping, info)
+
+            """ Cálculo do Jitter """
+            jit = fnping.list_of_latency_points
+            jitter_list = []
+            for x in range(len(jit)-1):
+                                
+                jitter_list.append(abs(round(jit[x] - jit[(x+1)],2)))
+            
+            jitter = sum(jitter_list)/len(jit)
+
             for i in fnping.info:
                 self.txtArea.insert(END, i + '\n')
+
+            self.txtArea.insert(END, '\nO jitter é de: '+str(round(jitter, 2))+' ms')
             newwindowping.destroy()
+        
         except:
             self.txtArea.delete(1.0, END)
             self.txtArea.insert(END, 'Error!')
-
+        
     def btnpingdefault(self, newwindowping, entry_ping):
         try:
             self.txtArea.delete(1.0, END)
@@ -93,8 +107,20 @@ class Gui():
             info = []
             fnping = Ping()
             fnping.main(entry_ping, info)
+            """ Cálculo do Jitter """
+            jit = fnping.list_of_latency_points
+            jitter_list = []
+            for x in range(len(jit)-1):
+                                
+                jitter_list.append(abs(round(jit[x] - jit[(x+1)],2)))
+            
+            jitter = sum(jitter_list)/len(jit)
+
             for i in fnping.info:
                 self.txtArea.insert(END, i + '\n')
+            
+            self.txtArea.insert(END, '\nO jitter é de: '+str(round(jitter, 2))+' ms')
+
             newwindowping.destroy()
         except:
             self.txtArea.delete(1.0, END)
@@ -102,7 +128,7 @@ class Gui():
 
     def windowping(self):
         newwindowping = Toplevel(root)
-        newwindowping.geometry('470x55')
+        newwindowping.geometry('490x55')
         btn_window = Button(newwindowping, text='Ping Server',
                             command=lambda: self.btnping(newwindowping, entry_ping))
         btn_window.grid(column=0, row=0)
